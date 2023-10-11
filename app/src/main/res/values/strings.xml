@@ -4,4 +4,6 @@
     <string name="footer"><![CDATA[Aplicación de uso exclusivo para trabajadores de la empresa P&S PROSERGE SRL.]]></string>
     <string name="proserge_title"><![CDATA[P&S PROSERGE SERL.]]></string>
     <string name="proserge_gmail">prosergesrl@gmail.com</string>
+    <string name="open">Abrir</string>
+    <string name="close">Cerrar</string>
 </resources>
