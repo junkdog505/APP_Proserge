@@ -79,12 +79,13 @@
                     </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.textfield.TextInputLayout>
                 <Button
-                    android:id="@+id/button"
+                    android:id="@+id/btnLogin"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:backgroundTint="@color/Red_300"
-                    android:text="Ingresar" />
+                    android:text="Ingresar"
+                    android:onClick="btnIngresar"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>

@@ -2,4 +2,6 @@
     <string name="app_name">APP_Proserge</string>
     <string name="Bienvenida">Bienvenido \na la aplicación \nde Proserge</string>
     <string name="footer"><![CDATA[Aplicación de uso exclusivo para trabajadores de la empresa P&S PROSERGE SRL.]]></string>
+    <string name="proserge_title"><![CDATA[P&S PROSERGE SERL.]]></string>
+    <string name="proserge_gmail">prosergesrl@gmail.com</string>
 </resources>

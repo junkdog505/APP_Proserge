@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<item android:title="Pantalla Principal">
+    <menu>
+        <item
+            android:id="@+id/nav_home"
+            android:icon="@drawable/ic_home"
+            android:title="Inicio"
+            />
+    </menu>
+</item>
+    <item android:title="Vistas">
+        <menu>
+            <item
+                android:id="@+id/nav_workers"
+                android:icon="@drawable/ic_group"
+                android:title="Trabajadores" />
+            <item
+                android:id="@+id/nav_mines"
+                android:icon="@drawable/ic_business"
+                android:title="Minas" />
+            <item
+                android:id="@+id/nav_epps"
+                android:icon="@drawable/ic_list"
+                android:title="EPPS" />
+        </menu>
+    </item>
+    <item android:title="Crear o Editar">
+        <menu>
+            <item
+                android:id="@+id/nav_editWorkers"
+                android:icon="@drawable/ic_groupadd"
+                android:title="Editar Trabajadores" />
+            <item
+                android:id="@+id/nav_editEpps"
+                android:icon="@drawable/ic_editnotes"
+                android:title="Editar EPPS" />
+        </menu>
+    </item>
+</menu>
