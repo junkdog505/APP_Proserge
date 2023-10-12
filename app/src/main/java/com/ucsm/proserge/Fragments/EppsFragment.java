@@ -23,17 +23,14 @@ public class EppsFragment extends Fragment {
         btnAddEpps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment homeFragment = new HomeFragment();
+                //Redireccion a fragment AddEppsFragment
+                Fragment targetFragment = new AddEppsFragment();
                 getParentFragmentManager().beginTransaction()
-                        .replace(R.id.container, new HomeFragment())
+                        .replace(R.id.container, new AddEppsFragment())
                         .addToBackStack(null)
                         .commit();
-
             }
         });
-
-
         return view;
-
     }
 }
