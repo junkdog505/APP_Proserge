@@ -9,11 +9,21 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.ucsm.proserge.Epp;
+import com.ucsm.proserge.EppAdapter;
 import com.ucsm.proserge.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class EppsFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private EppAdapter adapter;
+    private List<Epp> eppList;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -31,6 +41,32 @@ public class EppsFragment extends Fragment {
                         .commit();
             }
         });
+
+        recyclerView = view.findViewById(R.id.epps_recyclerview);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Obtén los datos de la base de datos y asigna a eppList
+        eppList = getGenericData();
+        adapter = new EppAdapter(getContext(), eppList);
+        recyclerView.setAdapter(adapter);
+
         return view;
+    }
+    private List<Epp> getGenericData() {
+        List<Epp> dataList = new ArrayList<>();
+
+        // Agrega algunos valores genéricos a la lista para probar
+        dataList.add(new Epp(1, "EPP 1"));
+        dataList.add(new Epp(2, "EPP 2"));
+        dataList.add(new Epp(3, "EPP 3"));
+        dataList.add(new Epp(4, "EPP 4"));
+        dataList.add(new Epp(5, "EPP 5"));
+        dataList.add(new Epp(6, "EPP 6"));
+        dataList.add(new Epp(7, "EPP 7"));
+        dataList.add(new Epp(8, "EPP 8"));
+        dataList.add(new Epp(9, "EPP 9"));
+        dataList.add(new Epp(10, "EPP 10"));
+
+        return dataList;
     }
 }
