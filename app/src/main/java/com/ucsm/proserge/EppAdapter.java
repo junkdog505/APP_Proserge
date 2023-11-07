@@ -9,10 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
-import com.ucsm.proserge.Fragments.AddEppsFragment;
 import com.ucsm.proserge.Fragments.EditEppsFragment;
 
 import java.util.List;
@@ -79,8 +79,15 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
                         String mensaje = "Editando " + eppToEdit.getNombre();
                         Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
                     }
-                    //Redireccion a fragment EditEppsFragment
-                    Fragment targetFragment = new EditEppsFragment();
+                    // Redirecciona al fragmento EditEppsFragment
+                    FragmentActivity activity = (FragmentActivity) context;
+                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
+
+                    // Reemplaza con el fragmento correcto que deseas cargar (EditEppsFragment)
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, new EditEppsFragment()) // Reemplaza con EditEppsFragment
+                            .addToBackStack(null)
+                            .commit();
 
                 }
             });

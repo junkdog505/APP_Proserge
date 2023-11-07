@@ -90,8 +90,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="35dp"
                         android:hint="Clasificación"
-                        android:inputType="textAutoCorrect"
-                        android:id="@+id/editText_eppsclasificacion"/>
+                        android:inputType="textAutoCorrect" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
