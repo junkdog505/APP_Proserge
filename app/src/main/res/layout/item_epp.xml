@@ -1,37 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="80dp"
     android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp">
+    android:layout_marginRight="10dp"
+    android:layout_marginTop="10dp">
 
-    <!-- item_epp.xml -->
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/Violet_200"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="#FDFAF8">
 
-        <TextView
-            android:id="@+id/textViewNombreEpp"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Nombre del EPP"/>
+        <!-- item_epp.xml -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
 
-        <Button
-            android:id="@+id/btnEditar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Editar"/>
+            <LinearLayout
+                android:layout_width="15dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_weight="1">
 
-        <Button
-            android:id="@+id/btnEliminar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Eliminar"/>
-    </LinearLayout>
+                <TextView
+                    android:id="@+id/textViewNombreEpp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/cardview_light_background"
+                    android:layout_weight="1"
+                    android:text="Nombre del EPP" />
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textViewTipo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/cardview_light_background"
+                        android:layout_weight="1"
+                        android:text="Tipo:"/>
+
+                    <TextView
+                        android:id="@+id/textViewTipoEpp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/cardview_light_background"
+                        android:layout_weight="1"
+                        android:text="Tipo"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/textViewClasificacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/cardview_light_background"
+                        android:layout_weight="1"
+                        android:text="Clasificación:"/>
+
+                    <TextView
+                        android:id="@+id/textViewClasificacionEpp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/cardview_light_background"
+                        android:layout_weight="1"
+                        android:text="Clasificacion"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnEditar"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Violet_100"
+                android:drawableLeft="@drawable/ic_edit"
+                android:layout_marginTop="10dp"/>
+
+            <Button
+                android:id="@+id/btnEliminar"
+                android:layout_width="45dp"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/Red_300"
+                android:drawableLeft="@drawable/ic_delete"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
