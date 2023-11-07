@@ -6,9 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.ucsm.proserge.Fragments.AddEppsFragment;
+import com.ucsm.proserge.Fragments.EditEppsFragment;
 
 import java.util.List;
 
@@ -41,23 +46,42 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         private TextView textViewNombre;
+        private TextView textViewTipo;
+        private TextView textViewClasificacion;
         private Button btnEditar;
         private Button btnEliminar;
 
         public ViewHolder(View itemView) {
             super(itemView);
             textViewNombre = itemView.findViewById(R.id.textViewNombreEpp);
+            textViewTipo = itemView.findViewById(R.id.textViewTipoEpp);
+            textViewClasificacion = itemView.findViewById(R.id.textViewClasificacionEpp);
             btnEditar = itemView.findViewById(R.id.btnEditar);
             btnEliminar = itemView.findViewById(R.id.btnEliminar);
         }
 
         public void bind(final Epp epp) {
             textViewNombre.setText(epp.getNombre());
+            textViewTipo.setText(epp.getTipo());
+            textViewClasificacion.setText(epp.getClasificacion());
 
             btnEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+
                     // Implementar la lógica para editar
+                    int position = getAdapterPosition();
+
+                    //Toast de verificacion
+                    if (position != RecyclerView.NO_POSITION) {
+                        Epp eppToEdit = eppList.get(position);
+
+                        String mensaje = "Editando " + eppToEdit.getNombre();
+                        Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                    }
+                    //Redireccion a fragment EditEppsFragment
+                    Fragment targetFragment = new EditEppsFragment();
+
                 }
             });
 

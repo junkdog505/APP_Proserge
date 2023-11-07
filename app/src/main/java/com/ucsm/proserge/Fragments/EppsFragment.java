@@ -69,9 +69,11 @@ public class EppsFragment extends Fragment {
             do {
                 int id = cursor.getInt(0); // Suponiendo que el ID está en la primera columna
                 String nombre = cursor.getString(1); // Suponiendo que el nombre está en la segunda columna
+                String tipo = cursor.getString(2);
+                String clasificacion = cursor.getString(3);
 
                 // Crea un objeto Epp y agrégalo a la lista
-                Epp epp = new Epp(id, nombre);
+                Epp epp = new Epp(id, nombre, tipo, clasificacion);
                 eppList.add(epp);
             } while (cursor.moveToNext());
         }
