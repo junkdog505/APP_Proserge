@@ -95,7 +95,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btnRegistrarEpp"
+                    android:id="@+id/btnEditarEpp"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"

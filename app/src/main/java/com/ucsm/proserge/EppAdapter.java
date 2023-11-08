@@ -82,6 +82,7 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
 
                         // Envía los valores del registro al fragmento
                         Bundle bundle = new Bundle();
+                        bundle.putInt("id", eppToEdit.getId());
                         bundle.putString("nombre", eppToEdit.getNombre());
                         bundle.putString("tipo", eppToEdit.getTipo());
                         bundle.putString("clasificacion", eppToEdit.getClasificacion());
