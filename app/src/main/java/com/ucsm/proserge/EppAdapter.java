@@ -99,7 +99,13 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
             btnEliminar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    int position = getAdapterPosition();
                     // Implementar la lógica para eliminar
+                    Epp eppToEdit = eppList.get(position);
+
+                    // Muestra un mensaje Toast
+                    String mensaje = "Elemento: " + eppToEdit.getNombre();
+                    Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
                 }
             });
         }
