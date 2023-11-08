@@ -29,6 +29,8 @@ public class EditEppsFragment extends Fragment {
         View view = inflater.inflate(R.layout.editepps_fragment,container,false);
 
         // Recupera los valores del registro desde los argumentos
+        int id = getArguments().getInt("id");
+        String idString = String.valueOf(id);
         nombre = getArguments().getString("nombre");
         tipo = getArguments().getString("tipo");
         clasificacion = getArguments().getString("clasificacion");
@@ -46,7 +48,40 @@ public class EditEppsFragment extends Fragment {
         btnEditarEpp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                
+                AdminSQLite admin= new AdminSQLite(requireContext());
+                SQLiteDatabase db = admin.getReadableDatabase();
+
+                String new_nombre = editTextNombre.getText().toString();
+                String new_tipo = editTextTipo.getText().toString();
+                String new_clasificacion = editTextClasificacion.getText().toString();
+
+                ContentValues valores = new ContentValues();
+                valores.put("Id_epp", idString);
+                valores.put("Nombre", new_nombre);
+                valores.put("Tipo", new_tipo);
+                valores.put("Clasificacion", new_clasificacion);
+
+                int cantidad = db.update("EPPS", valores, "Id_epp="+idString, null);
+                //db.close();
+
+                if(cantidad == 1){
+                    // La actualización fue exitosa
+                    // Ahora verifica si el registro se actualizó correctamente
+                    Cursor cursor = db.rawQuery("SELECT * FROM EPPS WHERE Id_epp = " + idString, null);
+
+                    if (cursor.moveToFirst()) {
+                        int id = cursor.getInt(0);
+                        String nombre = cursor.getString(1);
+                        String tipo = cursor.getString(2);
+                        String clasificacion = cursor.getString(3);
+
+                        Toast.makeText(getContext(), "modificado "+nombre+tipo+clasificacion,
+                            Toast.LENGTH_SHORT).show();
+                    }
+                }else{
+                    Toast.makeText(getContext(), "El artículo no existe", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
