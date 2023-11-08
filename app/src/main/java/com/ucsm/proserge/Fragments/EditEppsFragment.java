@@ -63,13 +63,12 @@ public class EditEppsFragment extends Fragment {
                     valores.put("Clasificacion", new_clasificacion);
 
                     //Actualización en BD del registro
-                    int cantidad = db.update("EPPS", valores, "Id_epp="+idString, null);
+                    int changes = db.update("EPPS", valores, "Id_epp="+idString, null);
                     db.close();
 
-                    if(cantidad == 1){
+                    if(changes == 1){
                         Toast.makeText(getContext(), "Edición exitosa", Toast.LENGTH_SHORT).show();
-                        // Cierre del fragmento para regresar al anterior
-                        getParentFragmentManager().popBackStack();
+                        getParentFragmentManager().popBackStack();// Cierre del fragmento para regresar al anterior
                     }else{
                         Toast.makeText(getContext(), "Edición fallida", Toast.LENGTH_SHORT).show();
                     }

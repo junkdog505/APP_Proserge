@@ -61,7 +61,7 @@
                         android:layout_marginBottom="35dp"
                         android:inputType="textAutoCorrect"
                         android:hint="Nombre"
-                        android:id="@+id/editText_eppsnombre"/>
+                        android:id="@+id/editText_addeppsnombre"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +76,7 @@
                         android:layout_marginBottom="35dp"
                         android:hint="Tipo"
                         android:inputType="textAutoCorrect"
-                        android:id="@+id/editText_eppstipo"/>
+                        android:id="@+id/editText_addeppstipo"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -90,7 +90,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="35dp"
                         android:hint="Clasificación"
-                        android:inputType="textAutoCorrect" />
+                        android:inputType="textAutoCorrect"
+                        android:id="@+id/editText_addeppsclasificacion"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
