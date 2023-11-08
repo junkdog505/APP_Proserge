@@ -1,6 +1,7 @@
 package com.ucsm.proserge;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
@@ -68,27 +70,28 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
             btnEditar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    // Implementar la lógica para editar
                     int position = getAdapterPosition();
 
-                    //Toast de verificacion
+                    //Redireccionamiento a EditEppsFragment con valores del registro
                     if (position != RecyclerView.NO_POSITION) {
                         Epp eppToEdit = eppList.get(position);
 
-                        String mensaje = "Editando " + eppToEdit.getNombre();
-                        Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                        // Redirecciona al fragmento EditEppsFragment con valores de registro
+                        FragmentManager fragmentManager = ((FragmentActivity) context).getSupportFragmentManager();
+                        EditEppsFragment editEppsFragment = new EditEppsFragment();
+
+                        // Envía los valores del registro al fragmento
+                        Bundle bundle = new Bundle();
+                        bundle.putString("nombre", eppToEdit.getNombre());
+                        bundle.putString("tipo", eppToEdit.getTipo());
+                        bundle.putString("clasificacion", eppToEdit.getClasificacion());
+                        editEppsFragment.setArguments(bundle);
+
+                        fragmentManager.beginTransaction()
+                                .replace(R.id.container, editEppsFragment)
+                                .addToBackStack(null)
+                                .commit();
                     }
-                    // Redirecciona al fragmento EditEppsFragment
-                    FragmentActivity activity = (FragmentActivity) context;
-                    FragmentManager fragmentManager = activity.getSupportFragmentManager();
-
-                    // Reemplaza con el fragmento correcto que deseas cargar (EditEppsFragment)
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, new EditEppsFragment()) // Reemplaza con EditEppsFragment
-                            .addToBackStack(null)
-                            .commit();
-
                 }
             });
 
