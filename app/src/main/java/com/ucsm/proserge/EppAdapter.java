@@ -1,6 +1,7 @@
 package com.ucsm.proserge;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -109,14 +110,28 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
 
                     String id_to_delete = String.valueOf(eppToEdit.getId()); //Id del elemento a eliminar
 
-                    int changes = db.delete("EPPS","Id_epp="+id_to_delete,null);
-                    db.close();
-                    if(changes == 1){
-                        Toast.makeText(context,"Artículo eliminado exitosamente", Toast.LENGTH_SHORT).show();
-                        eppList.remove(position);
-                        notifyItemRemoved(position);
-                    }else{
-                        Toast.makeText(context,"El Artículo no existe", Toast.LENGTH_SHORT).show();
+                    // Verificación si hay registros relacionados (FK) en otras tablas
+                    int relatedRecordsCount = 0;
+                    Cursor cursor = db.rawQuery("SELECT COUNT(*) FROM OrdenTrabajo WHERE Id_EPPS=?", new String[]{id_to_delete});
+                    if (cursor.moveToFirst()) {
+                        relatedRecordsCount = cursor.getInt(0);
+                    }
+                    cursor.close();
+
+                    if (relatedRecordsCount > 0) {
+                        // Hay registros relacionados en otras tablas, muestra un mensaje de error
+                        Toast.makeText(context, "Este artículo se encuentra en uso, no se puede eliminar", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // No hay registros relacionados, procede a eliminar el registro principal
+                        int changes = db.delete("EPPS", "Id_epp=?", new String[]{id_to_delete});
+                        db.close();
+                        if (changes == 1) {
+                            Toast.makeText(context, "Artículo eliminado exitosamente", Toast.LENGTH_SHORT).show();
+                            eppList.remove(position);
+                            notifyItemRemoved(position);
+                        } else {
+                            Toast.makeText(context, "El Artículo no existe", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 }
             });
