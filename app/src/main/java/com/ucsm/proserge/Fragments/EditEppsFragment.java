@@ -75,12 +75,8 @@ public class EditEppsFragment extends Fragment {
                 }else{
                     Toast.makeText(getContext(), "El artículo no puede tener un nombre vacío", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
-
         return view;
     }
-
 }

@@ -1,6 +1,7 @@
 package com.ucsm.proserge;
 
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -103,9 +104,20 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
                     // Implementar la lógica para eliminar
                     Epp eppToEdit = eppList.get(position);
 
-                    // Muestra un mensaje Toast
-                    String mensaje = "Elemento: " + eppToEdit.getNombre();
-                    Toast.makeText(context, mensaje, Toast.LENGTH_SHORT).show();
+                    AdminSQLite admin= new AdminSQLite(context);
+                    SQLiteDatabase db = admin.getWritableDatabase();
+
+                    String id_to_delete = String.valueOf(eppToEdit.getId()); //Id del elemento a eliminar
+
+                    int changes = db.delete("EPPS","Id_epp="+id_to_delete,null);
+                    db.close();
+                    if(changes == 1){
+                        Toast.makeText(context,"Artículo eliminado exitosamente", Toast.LENGTH_SHORT).show();
+                        eppList.remove(position);
+                        notifyItemRemoved(position);
+                    }else{
+                        Toast.makeText(context,"El Artículo no existe", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }

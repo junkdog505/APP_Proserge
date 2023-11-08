@@ -57,7 +57,6 @@ public class AddEppsFragment extends Fragment{
                 }
             }
         });
-
         return view;
     }
 }
