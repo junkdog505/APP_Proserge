@@ -1,4 +1,4 @@
-package com.ucsm.proserge;
+package com.ucsm.proserge.Adapters;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -12,12 +12,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
-import com.ucsm.proserge.Fragments.EditEppsFragment;
+import com.ucsm.proserge.AdminSQLite;
+import com.ucsm.proserge.CRUD.EditEppsFragment;
+import com.ucsm.proserge.R;
+import com.ucsm.proserge.Clases.Epp;
 
 import java.util.List;
 

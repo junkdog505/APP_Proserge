@@ -1,4 +1,4 @@
-package com.ucsm.proserge.Fragments;
+package com.ucsm.proserge.CRUD;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;

@@ -5,19 +5,18 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ucsm.proserge.AdminSQLite;
-import com.ucsm.proserge.Epp;
-import com.ucsm.proserge.EppAdapter;
+import com.ucsm.proserge.CRUD.AddEppsFragment;
+import com.ucsm.proserge.Clases.Epp;
+import com.ucsm.proserge.Adapters.EppAdapter;
 import com.ucsm.proserge.R;
 
 import java.util.ArrayList;

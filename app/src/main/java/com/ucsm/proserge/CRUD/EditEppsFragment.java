@@ -1,4 +1,4 @@
-package com.ucsm.proserge.Fragments;
+package com.ucsm.proserge.CRUD;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;

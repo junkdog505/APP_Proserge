@@ -1,4 +1,4 @@
-package com.ucsm.proserge;
+package com.ucsm.proserge.Clases;
 
 public class Epp {
     private int id;
