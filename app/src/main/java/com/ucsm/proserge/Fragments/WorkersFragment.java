@@ -2,6 +2,8 @@ package com.ucsm.proserge.Fragments;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.ucsm.proserge.Adapters.TrabajadorAdapter;
 import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.CRUD.AddTrabajadorFragment;
@@ -26,6 +29,8 @@ public class WorkersFragment extends Fragment {
     private RecyclerView recyclerView;
     private TrabajadorAdapter adapter;
     private List<Trabajador> trabajadorList;
+    private TextInputEditText editTextSearchTrabajadorDni;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,6 +52,25 @@ public class WorkersFragment extends Fragment {
         recyclerView = view.findViewById(R.id.trabajador_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //Busqueda por DNI
+        editTextSearchTrabajadorDni = view.findViewById(R.id.editText_searchtrabajadordni);
+        editTextSearchTrabajadorDni.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterTrabajadores(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
         //Obtener los datos de la bd y asignarlos a la lista
 
         trabajadorList = getTrabajadorFromDatabase();
@@ -54,6 +78,19 @@ public class WorkersFragment extends Fragment {
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+    private void filterTrabajadores(String text) {
+        List<Trabajador> filteredList = new ArrayList<>();
+
+        for (Trabajador trabajador : trabajadorList) {
+            // Filtra por el número de DNI (puedes personalizar esto según tus necesidades)
+            if (trabajador.getDni().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(trabajador);
+            }
+        }
+
+        // Actualiza la lista del adaptador con los resultados filtrados
+        adapter.filterList(filteredList);
     }
 
     private List<Trabajador> getTrabajadorFromDatabase(){

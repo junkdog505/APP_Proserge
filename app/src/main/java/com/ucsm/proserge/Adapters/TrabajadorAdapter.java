@@ -25,6 +25,7 @@ import com.ucsm.proserge.R;
 import org.w3c.dom.Text;
 
 import java.nio.BufferUnderflowException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class TrabajadorAdapter extends RecyclerView.Adapter<TrabajadorAdapter.ViewHolder> {
@@ -34,6 +35,12 @@ public class TrabajadorAdapter extends RecyclerView.Adapter<TrabajadorAdapter.Vi
     public TrabajadorAdapter(Context context, List<Trabajador> trabajadorList){
         this.context = context;
         this.trabajadorList = trabajadorList;
+    }
+
+    // Método para realizar la búsqueda y actualizar la lista filtrada por DNI
+    public void filterList(List<Trabajador> filteredList) {
+        trabajadorList = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
