@@ -7,12 +7,15 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.ucsm.proserge.CRUD.AddCentroCostoFragment;
 import com.ucsm.proserge.R;
 
 public class CentroCostoFragment extends Fragment {
+    private RecyclerView recyclerView;
+    private CentroCostoAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,6 +33,8 @@ public class CentroCostoFragment extends Fragment {
                         .commit();
             }
         });
+
+        recyclerView = view.findViewById(R.id.centrocosto_recyclerview);
 
         return view;
     }
