@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentManager;
 
 import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.CRUD.EditEppsFragment;
+import com.ucsm.proserge.Clases.Trabajador;
 import com.ucsm.proserge.R;
 import com.ucsm.proserge.Clases.Epp;
 
@@ -30,6 +31,12 @@ public class EppAdapter extends RecyclerView.Adapter<EppAdapter.ViewHolder> {
     public EppAdapter(Context context, List<Epp> eppList) {
         this.context = context;
         this.eppList = eppList;
+    }
+
+    // Método para realizar la búsqueda y actualizar la lista filtrada por DNI
+    public void filterList(List<Epp> filteredList) {
+        eppList = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull
