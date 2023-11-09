@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.R;
 
 public class HomeFragment extends Fragment {
@@ -15,6 +16,8 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        AdminSQLite admin = new AdminSQLite(requireContext());
+        admin.copyDatabase();
         View view = inflater.inflate(R.layout.home_fragment,container,false);
         return view;
 

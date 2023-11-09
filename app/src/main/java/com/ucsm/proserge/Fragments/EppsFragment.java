@@ -29,9 +29,6 @@ public class EppsFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        AdminSQLite admin = new AdminSQLite(requireContext());
-        admin.copyDatabase();
-
         View view = inflater.inflate(R.layout.epps_fragment,container,false);
         FloatingActionButton btnAddEpps = view.findViewById(R.id.floatingbuttonaddepps);
         btnAddEpps.setOnClickListener(new View.OnClickListener() {
