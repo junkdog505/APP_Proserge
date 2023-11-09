@@ -1,7 +1,7 @@
 package com.ucsm.proserge.Clases;
 
 public class Trabajador {
-    private String d, nombres, apellidos, cargo, tipocontrato;
+    private String dni, nombres, apellidos, cargo, tipocontrato;
 
     public Trabajador(String d, String n, String a, String c, String t){
         this.dni = d;
