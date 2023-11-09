@@ -13,11 +13,11 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.ucsm.proserge.Fragments.EditEppsFragment;
-import com.ucsm.proserge.Fragments.EditWorkersFragment;
+import com.ucsm.proserge.CRUD.EditEppsFragment;
+import com.ucsm.proserge.CRUD.EditWorkersFragment;
 import com.ucsm.proserge.Fragments.EppsFragment;
 import com.ucsm.proserge.Fragments.HomeFragment;
-import com.ucsm.proserge.Fragments.MinesFragment;
+import com.ucsm.proserge.Fragments.CentroCostoFragment;
 import com.ucsm.proserge.Fragments.WorkersFragment;
 
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -71,7 +71,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
         if(item.getItemId() == R.id.nav_mines){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new MinesFragment());
+            fragmentTransaction.replace(R.id.container, new CentroCostoFragment());
             fragmentTransaction.commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }

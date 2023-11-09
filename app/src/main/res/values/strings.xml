@@ -6,4 +6,11 @@
     <string name="proserge_gmail">prosergesrl@gmail.com</string>
     <string name="open">Abrir</string>
     <string name="close">Cerrar</string>
+    <string name="contact_phone">Proyectos / presupuestos :\n• 999350041\nAdministración / Reclutamiento:\n• 962729359 - 999350092</string>
+    <string name="proserge_map">Oficinas :\n• Urb. Cabaña María M-8 II Etapa, I Fase Cercado - Arequipa\n• Taller : Av. Brasil, Mz. E - Lot. 3, Río Seco Asc. Aptasa, C. Colorado - Arequipa (Referencia a 2 cuadras antes de Inkabor)</string>
+    <string name="proserge_emails">E-mail:\n• psurco@proserge.com\n• ingenieria@proserge.com\n• prosergesrl@gmail.com</string>
+    <string name="description_presentation"><![CDATA[Somos P & S Proserge S.R.L. una empresa que cuenta con profesionales calificados y de amplia experiencia y ofrece Servicios de Mantenimiento de Equipos mineros en Plantas Concentradoras, Fabricación de estructuras metálicas y desmontaje de equipos para producción minera e industrial.]]></string>
+    <string name="description_why">Cumplimos con los standares de seguridad y un programa de Mejora Continua que permita desarrollar Servicios con alta eficiencia en calidad , tiempos y Seguridad basada en el comportamiento .</string>
+    <string name="proserge_service">Servicio de calidad</string>
+    <string name="description_service">Nuestras operaciones de fabricación las realizamos en el taller, bajo la supervisión de personal calificado , con dossier de calidad y certificación de los procedimientos, ya sea de soldadura, acabado y otros. Se realiza evaluación de ensayos NDT, con acabado industrial certificado por los especialistas.</string>
 </resources>

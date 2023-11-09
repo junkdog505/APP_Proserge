@@ -8,7 +8,7 @@
     <LinearLayout
         android:id="@+id/linearLayoutTitle"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="120dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginStart="20dp"
-            android:text="Edición de EPP"
+            android:text="Edición de Centro de Costo"
             android:textColor="@color/Red_300"
             android:textSize="45sp"
             android:textStyle="bold" />
@@ -48,6 +48,7 @@
                 android:orientation="vertical">
 
 
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -61,41 +62,11 @@
                         android:layout_marginBottom="35dp"
                         android:inputType="textAutoCorrect"
                         android:hint="Nombre"
-                        android:id="@+id/editText_eppsnombre"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:startIconDrawable="@drawable/ic_type"
-                    app:endIconMode="clear_text">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="35dp"
-                        android:hint="Tipo"
-                        android:inputType="textAutoCorrect"
-                        android:id="@+id/editText_eppstipo"/>
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:startIconDrawable="@drawable/ic_classification"
-                    app:endIconMode="clear_text">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="35dp"
-                        android:hint="Clasificación"
-                        android:inputType="textAutoCorrect"
-                        android:id="@+id/editText_eppsclasificacion"/>
+                        android:id="@+id/editText_editcentrocostonombre"/>
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <Button
-                    android:id="@+id/btnEditarEpp"
+                    android:id="@+id/btnEditarCentroCosto"
                     android:layout_width="120dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -105,4 +76,5 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

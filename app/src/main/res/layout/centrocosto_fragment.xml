@@ -6,14 +6,13 @@
     android:layout_height="match_parent">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/epps_recyclerview"
+        android:id="@+id/centrocosto_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="85dp"/>
 
-
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingbuttonaddepps"
+        android:id="@+id/floatingbuttonaddcentrocosto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:clickable="true"
@@ -25,8 +24,6 @@
         app:layout_constraintVertical_bias="0.979"
         app:srcCompat="@android:drawable/ic_menu_add"
         app:backgroundTint="@color/Red_200"
-        android:onClick="onClickAddEpps"/>
-
-
+        android:onClick="onClickAddCentroCosto"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
