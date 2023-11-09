@@ -82,6 +82,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             fragmentTransaction.commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+        /*
         if(item.getItemId() == R.id.nav_editWorkers){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
@@ -95,9 +96,7 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             fragmentTransaction.replace(R.id.container, new EditEppsFragment());
             fragmentTransaction.commit();
             drawerLayout.closeDrawer(GravityCompat.START);
-        }
-
-
+        }*/
         return false;
     }
 }
