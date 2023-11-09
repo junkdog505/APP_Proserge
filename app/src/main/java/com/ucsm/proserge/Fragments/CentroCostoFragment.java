@@ -2,6 +2,8 @@ package com.ucsm.proserge.Fragments;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +15,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.textfield.TextInputEditText;
 import com.ucsm.proserge.Adapters.CentroCostoAdapter;
 import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.CRUD.AddCentroCostoFragment;
 import com.ucsm.proserge.Clases.CentroCosto;
+import com.ucsm.proserge.Clases.Trabajador;
 import com.ucsm.proserge.R;
 
 import java.util.ArrayList;
@@ -26,6 +30,7 @@ public class CentroCostoFragment extends Fragment {
     private RecyclerView recyclerView;
     private CentroCostoAdapter adapter;
     private List<CentroCosto> centroCostoList;
+    private TextInputEditText editTextSearchCentroCostoId;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -47,12 +52,43 @@ public class CentroCostoFragment extends Fragment {
         recyclerView = view.findViewById(R.id.centrocosto_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        //Búsqueda por ID
+        editTextSearchCentroCostoId = view.findViewById(R.id.editText_searchcentrocostoid);
+        editTextSearchCentroCostoId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                filterCentroCosto(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+            }
+        });
+
         //Obtén los datos de la base de datos y asigna a centroCostoList
         centroCostoList = getCentroCostoFromDatabase();
         adapter = new CentroCostoAdapter(getContext(), centroCostoList);
         recyclerView.setAdapter(adapter);
 
         return view;
+    }
+
+    private void filterCentroCosto(String text) {
+        List<CentroCosto> filteredList = new ArrayList<>();
+
+        for (CentroCosto centroCosto : centroCostoList) {
+            // Filtra por el número de id
+            if (centroCosto.getId().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(centroCosto);
+            }
+        }
+
+        // Actualiza la lista del adaptador con los resultados filtrados
+        adapter.filterList(filteredList);
     }
 
     private List<CentroCosto> getCentroCostoFromDatabase(){

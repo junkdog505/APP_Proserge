@@ -19,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.CRUD.EditCentroCostoFragment;
 import com.ucsm.proserge.Clases.CentroCosto;
+import com.ucsm.proserge.Clases.Trabajador;
 import com.ucsm.proserge.R;
 
 import java.util.List;
@@ -30,6 +31,12 @@ public class CentroCostoAdapter extends RecyclerView.Adapter<CentroCostoAdapter.
     public CentroCostoAdapter(Context context, List<CentroCosto> centroCostoList){
         this.context = context;
         this.centroCostoList = centroCostoList;
+    }
+
+    // Método para realizar la búsqueda y actualizar la lista filtrada por ID
+    public void filterList(List<CentroCosto> filteredList) {
+        centroCostoList = filteredList;
+        notifyDataSetChanged();
     }
 
     @NonNull

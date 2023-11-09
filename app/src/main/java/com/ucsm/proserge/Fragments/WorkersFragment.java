@@ -83,7 +83,7 @@ public class WorkersFragment extends Fragment {
         List<Trabajador> filteredList = new ArrayList<>();
 
         for (Trabajador trabajador : trabajadorList) {
-            // Filtra por el número de DNI (puedes personalizar esto según tus necesidades)
+            // Filtra por el número de DNI
             if (trabajador.getDni().toLowerCase().contains(text.toLowerCase())) {
                 filteredList.add(trabajador);
             }
