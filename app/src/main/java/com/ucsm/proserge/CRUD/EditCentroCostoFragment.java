@@ -19,7 +19,7 @@ import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.R;
 
 public class EditCentroCostoFragment extends Fragment {
-    String id, nombre;
+    String idtoedit, nombre;
     TextInputEditText editTextId, editTextNombre;
 
     @SuppressLint("MissingInflatedId")
@@ -29,14 +29,12 @@ public class EditCentroCostoFragment extends Fragment {
         View view = inflater.inflate(R.layout.editcentrocosto_fragment,container,false);
 
         //Recupera los valores del registro desde los argumentos
-        id = getArguments().getString("id");
+        idtoedit = getArguments().getString("id");
         nombre = getArguments().getString("nombre");
 
         //Configura los valores en los campos de entrada de texto
-        editTextId = view.findViewById(R.id.editText_editcentrocostoid);
         editTextNombre = view.findViewById(R.id.editText_editcentrocostonombre);
 
-        editTextId.setText(id);
         editTextNombre.setText(nombre);
 
         Button btnEditarCentroCosto = view.findViewById(R.id.btnEditarCentroCosto);
@@ -46,16 +44,15 @@ public class EditCentroCostoFragment extends Fragment {
                 AdminSQLite admin = new AdminSQLite(requireContext());
                 SQLiteDatabase db = admin.getWritableDatabase();
 
-                String new_id = editTextId.getText().toString();
                 String new_nombre = editTextNombre.getText().toString();
 
-                if(!new_id.isEmpty() && !new_nombre.isEmpty()){
+                if(!new_nombre.isEmpty()){
                     ContentValues valores = new ContentValues();
-                    valores.put("Id_CC", new_id);
+                    valores.put("Id_CC", idtoedit);
                     valores.put("Nombre", new_nombre);
 
                     //Acualización en BD del registro
-                    int changes = db.update("CentroCosto", valores, "Id_CC"+id, null);
+                    int changes = db.update("CentroCosto", valores, "Id_CC="+idtoedit, null);
                     db.close();
 
                     if(changes == 1){
