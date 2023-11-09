@@ -43,6 +43,19 @@ public class CentroCostoAdapter extends RecyclerView.Adapter<CentroCostoAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position){
         CentroCosto centroCosto = centroCostoList.get(position);
         holder.bind(centroCosto);
+
+        // Verifica si el elemento actual es el último
+        if (position == getItemCount() - 1) {
+            // Último elemento, aplica margen inferior
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.bottomMargin = (int) holder.itemView.getContext().getResources().getDimension(R.dimen.margin_bottom_last_item);
+            holder.itemView.setLayoutParams(layoutParams);
+        } else {
+            // Si no es el último elemento, restablece el margen inferior a 0
+            ViewGroup.MarginLayoutParams layoutParams = (ViewGroup.MarginLayoutParams) holder.itemView.getLayoutParams();
+            layoutParams.bottomMargin = 0;
+            holder.itemView.setLayoutParams(layoutParams);
+        }
     }
 
     @Override
