@@ -18,6 +18,7 @@ import com.ucsm.proserge.CRUD.EditWorkersFragment;
 import com.ucsm.proserge.Fragments.EppsFragment;
 import com.ucsm.proserge.Fragments.HomeFragment;
 import com.ucsm.proserge.Fragments.CentroCostoFragment;
+import com.ucsm.proserge.Fragments.OrdenTrabajoFragment;
 import com.ucsm.proserge.Fragments.WorkersFragment;
 
 public class NavigationDrawerActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
@@ -82,14 +83,15 @@ public class NavigationDrawerActivity extends AppCompatActivity implements Navig
             fragmentTransaction.commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
-        /*
-        if(item.getItemId() == R.id.nav_editWorkers){
+
+        if(item.getItemId() == R.id.nav_ordentrabajo){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container, new EditWorkersFragment());
+            fragmentTransaction.replace(R.id.container, new OrdenTrabajoFragment());
             fragmentTransaction.commit();
             drawerLayout.closeDrawer(GravityCompat.START);
         }
+        /*
         if(item.getItemId() == R.id.nav_editEpps){
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();

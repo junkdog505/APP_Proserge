@@ -26,18 +26,12 @@
                 android:title="Centros de Costo" />
         </menu>
     </item>
-    <!--
-    <item android:title="Crear o Editar">
+    <item android:title="Ordenes">
         <menu>
             <item
-                android:id="@+id/nav_editWorkers"
-                android:icon="@drawable/ic_groupadd"
-                android:title="Editar Trabajadores" />
-            <item
-                android:id="@+id/nav_editEpps"
-                android:icon="@drawable/ic_editnotes"
-                android:title="Editar EPPS" />
+                android:id="@+id/nav_ordentrabajo"
+                android:icon="@drawable/ic_orden"
+                android:title="Ordenes de Trabajo" />
         </menu>
     </item>
-    -->
 </menu>
