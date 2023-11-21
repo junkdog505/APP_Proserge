@@ -1,16 +1,21 @@
 package com.ucsm.proserge.Adapters;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.ucsm.proserge.Clases.OrdenTrabajo;
+import com.ucsm.proserge.Fragments.DetalleOrdenTrabajoFragment;
 import com.ucsm.proserge.R;
 
 import java.util.List;
@@ -56,6 +61,33 @@ public class OrdenTrabajoAdapter extends RecyclerView.Adapter<OrdenTrabajoAdapte
             layoutParams.bottomMargin = 0;
             holder.itemView.setLayoutParams(layoutParams);
         }
+
+        // Redirección al pulsar cada Cardview
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Mostrar Toast al hacer clic en el CardView
+                Toast.makeText(context, "Has pulsado el CardView con ID: " + ordenTrabajo.getId(), Toast.LENGTH_SHORT).show();
+
+                // Obtener el registro seleccionado
+                OrdenTrabajo ordenSeleccionada = ordenList.get(position);
+
+                // Fragmento para mostrar los detalles del registro
+                DetalleOrdenTrabajoFragment detalleFragment = new DetalleOrdenTrabajoFragment();
+
+                // Pasar id del registro al nuevo fragmento por medio de Bundle
+                Bundle bundle = new Bundle();
+                bundle.putString("id", ordenSeleccionada.getId());
+                detalleFragment.setArguments(bundle);
+
+                // Abrir el nuevo fragmento con los detalles del registro
+                FragmentTransaction transaction = ((AppCompatActivity) context).getSupportFragmentManager().beginTransaction();
+                transaction.replace(R.id.container, detalleFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+
+            }
+        });
 
     }
 

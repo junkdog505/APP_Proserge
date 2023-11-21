@@ -13,8 +13,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
-import com.ucsm.proserge.CRUD.EditEppsFragment;
-import com.ucsm.proserge.CRUD.EditWorkersFragment;
 import com.ucsm.proserge.Fragments.EppsFragment;
 import com.ucsm.proserge.Fragments.HomeFragment;
 import com.ucsm.proserge.Fragments.CentroCostoFragment;
