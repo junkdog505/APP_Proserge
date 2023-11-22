@@ -66,9 +66,6 @@ public class OrdenTrabajoAdapter extends RecyclerView.Adapter<OrdenTrabajoAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Mostrar Toast al hacer clic en el CardView
-                Toast.makeText(context, "Has pulsado el CardView con ID: " + ordenTrabajo.getId(), Toast.LENGTH_SHORT).show();
-
                 // Obtener el registro seleccionado
                 OrdenTrabajo ordenSeleccionada = ordenList.get(position);
 

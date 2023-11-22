@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -33,6 +34,32 @@ public class DetalleOrdenTrabajoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.detalleordentrabajo_fragment,container,false);
 
+        TextView textViewId_Ot, textViewFecha, textViewNombre, textViewCCid, textViewCCnombre, textViewTid, textViewTn, textViewTa, textViewTc, textViewTe;
+
+        String id_ot, fecha, nombre, centrocosto_id, centrocosto_nombre, trabajador_id, trabajador_nombres, trabajador_apellidos, trabajador_cargo, tipoentrega;
+
+        textViewId_Ot = view.findViewById(R.id.textViewDetalleId);
+        textViewFecha = view.findViewById(R.id.textViewDetalleFecha);
+        textViewNombre = view.findViewById(R.id.textViewDetalleNombre);
+        textViewCCid = view.findViewById(R.id.textViewDetalleIdCentroCosto);
+        textViewCCnombre = view.findViewById(R.id.textViewDetalleNombreCentroCosto);
+        textViewTid = view.findViewById(R.id.textViewDetalleDniTrabajador);
+        textViewTn = view.findViewById(R.id.textViewDetalleNombresTrabajador);
+        textViewTa = view.findViewById(R.id.textViewDetalleApellidosTrabajador);
+        textViewTc = view.findViewById(R.id.textViewDetalleCargoTrabajador);
+        textViewTe = view.findViewById(R.id.textViewDetalleTipoEntrega);
+
+        textViewId_Ot.setText(getArguments().getString("id"));
+        textViewFecha.setText(getArguments().getString("fecha"));
+        textViewNombre.setText(getArguments().getString("nombre"));
+        textViewCCid.setText(getArguments().getString("centrocosto_id"));
+        textViewCCnombre.setText(getArguments().getString("centrocosto_nombre"));
+        textViewTid.setText(getArguments().getString("trabajador_id"));
+        textViewTn.setText(getArguments().getString("trabajador_nombres"));
+        textViewTa.setText(getArguments().getString("trabajador_apellidos"));
+        textViewTc.setText(getArguments().getString("trabajador_cargo"));
+        textViewTe.setText(getArguments().getString("tipoentrega"));
+
         recyclerView = view.findViewById(R.id.ordendetalle_recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -40,8 +67,6 @@ public class DetalleOrdenTrabajoFragment extends Fragment {
         detalleOrdenTrabajoList = getDetalleFromDatabase();
         adapter = new DetalleOrdenTrabajoAdapter(getContext(), detalleOrdenTrabajoList);
         recyclerView.setAdapter(adapter);
-
-        String id_ot, fecha;
 
         return view;
     }
