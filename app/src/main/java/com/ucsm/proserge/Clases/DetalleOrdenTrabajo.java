@@ -1,24 +1,24 @@
 package com.ucsm.proserge.Clases;
 
 public class DetalleOrdenTrabajo {
-    private String ot_id, ot_fecha, ot_nombre, trabajador_id, trabajador_nombres, trabajador_apellidos, trabajador_cargo, epps_id, epps_nombre, centrocosto_id, centrocosto_nombre, tipoentrega;
+    private String epps_nombre;
 
-    public DetalleOrdenTrabajo(String ot_id, String ot_f, String ot_n, String trabajador_id, String trabajador_n, String trabajador_a, String trabajador_c, String epps_id,String epps_n, String centrocosto_id, String centrocosto_n, String te){
-        this.ot_id = ot_id;
+    public DetalleOrdenTrabajo(String epps_n){
+        /*this.ot_id = ot_id;
         this.ot_fecha = ot_f;
         this.ot_nombre = ot_n;
         this.trabajador_id = trabajador_id;
         this.trabajador_nombres = trabajador_n;
         this.trabajador_apellidos = trabajador_a;
-        this.trabajador_cargo = trabajador_c;
-        this.epps_id = epps_id;
+        this.trabajador_cargo = trabajador_c;*/
+        /*this.epps_id = epps_id;*/
         this.epps_nombre = epps_n;
-        this.centrocosto_id = centrocosto_id;
+        /*this.centrocosto_id = centrocosto_id;
         this.centrocosto_nombre = centrocosto_n;
-        this.tipoentrega = te;
+        this.tipoentrega = te;*/
     }
 
-    public String getOt_id() {
+    /*public String getOt_id() {
         return ot_id;
     }
 
@@ -80,7 +80,7 @@ public class DetalleOrdenTrabajo {
 
     public void setEpps_id(String epps_id) {
         this.epps_id = epps_id;
-    }
+    }*/
 
     public String getEpps_nombre() {
         return epps_nombre;
@@ -90,7 +90,7 @@ public class DetalleOrdenTrabajo {
         this.epps_nombre = epps_nombre;
     }
 
-    public String getCentrocosto_id() {
+    /*public String getCentrocosto_id() {
         return centrocosto_id;
     }
 
@@ -112,5 +112,5 @@ public class DetalleOrdenTrabajo {
 
     public void setTipoentrega(String tipoentrega) {
         this.tipoentrega = tipoentrega;
-    }
+    }*/
 }

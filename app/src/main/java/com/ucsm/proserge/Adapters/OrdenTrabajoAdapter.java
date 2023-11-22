@@ -78,6 +78,15 @@ public class OrdenTrabajoAdapter extends RecyclerView.Adapter<OrdenTrabajoAdapte
                 // Pasar id del registro al nuevo fragmento por medio de Bundle
                 Bundle bundle = new Bundle();
                 bundle.putString("id", ordenSeleccionada.getId());
+                bundle.putString("fecha", ordenSeleccionada.getFecha());
+                bundle.putString("nombre", ordenSeleccionada.getNombre());
+                bundle.putString("trabajador_id", ordenSeleccionada.getId_trabajador());
+                bundle.putString("trabajador_nombres", ordenSeleccionada.getNombres_trabajador());
+                bundle.putString("trabajador_apellidos", ordenSeleccionada.getApellidos_trabajador());
+                bundle.putString("trabajador_cargo", ordenSeleccionada.getCargo_trabajador());
+                bundle.putString("centrocosto_id", ordenSeleccionada.getId_centrocosto());
+                bundle.putString("centrocosto_nombre", ordenSeleccionada.getNombre_centrocosto());
+                bundle.putString("tipoentrega", ordenSeleccionada.getId());
                 detalleFragment.setArguments(bundle);
 
                 // Abrir el nuevo fragmento con los detalles del registro
