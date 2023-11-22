@@ -13,6 +13,11 @@ public class Epp {
         this.clasificacion = c;
     }
 
+    public Epp(int i, String n){
+        this.id = i;
+        this.nombre = n;
+    }
+
     // Otros atributos y métodos getters y setters
 
     public int getId() {

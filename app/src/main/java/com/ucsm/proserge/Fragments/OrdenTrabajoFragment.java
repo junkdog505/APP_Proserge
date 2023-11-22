@@ -19,6 +19,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.ucsm.proserge.Adapters.OrdenTrabajoAdapter;
 import com.ucsm.proserge.AdminSQLite;
+import com.ucsm.proserge.CRUD.AddDetalleOrdenFragment;
 import com.ucsm.proserge.Clases.OrdenTrabajo;
 import com.ucsm.proserge.R;
 
@@ -41,7 +42,11 @@ public class OrdenTrabajoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 //Redireccion a fragment AddOrdenFragment
-                //Implementar
+                Fragment targetFragment = new AddDetalleOrdenFragment();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.container, new AddDetalleOrdenFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
 
