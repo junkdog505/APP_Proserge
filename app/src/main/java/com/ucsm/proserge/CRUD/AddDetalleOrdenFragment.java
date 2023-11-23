@@ -3,11 +3,14 @@ package com.ucsm.proserge.CRUD;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -56,6 +59,33 @@ public class AddDetalleOrdenFragment extends Fragment {
             }
         });
 
+        /* preview Trabajador info */
+        EditText editTextDni = view.findViewById(R.id.editText_adddetalledni);
+        TextView textViewNombres = view.findViewById(R.id.textViewAddDetalleNombresTrabajador);
+        TextView textViewApellidos = view.findViewById(R.id.textViewAddDetalleApellidosTrabajador);
+        TextView textViewCargo = view.findViewById(R.id.textViewAddDetalleCargoTrabajador);
+
+        // TextChangedListener para capturar los cambios en el DNI
+        editTextDni.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Método antes de que cambie el texto
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                // Método cuando el texto cambia
+                String dni = charSequence.toString();
+
+                // Aquí puedes llamar a un método para obtener la información asociada al DNI
+                obtenerInformacionPorDNI(dni, textViewNombres, textViewApellidos, textViewCargo);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                // Método después de que cambie el texto
+            }
+        });
         return view;
     }
 
@@ -79,5 +109,30 @@ public class AddDetalleOrdenFragment extends Fragment {
         db.close();
 
         return optionsList;
+    }
+
+    private void obtenerInformacionPorDNI(String dni, TextView textViewNombres, TextView textViewApellidos, TextView textViewCargo) {
+        AdminSQLite admin = new AdminSQLite(requireContext());
+        SQLiteDatabase db = admin.getReadableDatabase();
+
+        if(dni.length() == 8){
+            //Consulta a BD utilizando un parámetro en la consulta
+            Cursor cursor = db.rawQuery("SELECT Trabajador.DNI, Trabajador.Nombres, Trabajador.Apellidos, Trabajador.Cargo FROM Trabajador WHERE DNI = ?", new String[]{dni});
+            if(cursor.moveToFirst()){
+                textViewNombres.setText(cursor.getString(1));
+                textViewApellidos.setText(cursor.getString(2));
+                textViewCargo.setText(cursor.getString(3));
+            }else{
+                textViewNombres.setText("");
+                textViewApellidos.setText("Trabajador no encontrado");
+                textViewCargo.setText("");
+            }
+            cursor.close(); //Cerrar cursor después de usarlo
+            db.close(); //Cerrar la base de datos después de usarla
+        }else{
+            textViewNombres.setText("");
+            textViewApellidos.setText("DNI Ingresado no válido");
+            textViewCargo.setText("");
+        }
     }
 }
