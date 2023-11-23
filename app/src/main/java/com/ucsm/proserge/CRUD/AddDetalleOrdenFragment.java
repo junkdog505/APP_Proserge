@@ -18,7 +18,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.ucsm.proserge.Adapters.DetalleAddEppItem;
 import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.Clases.CentroCosto;
 import com.ucsm.proserge.R;
@@ -110,6 +113,24 @@ public class AddDetalleOrdenFragment extends Fragment {
                 // Método después de que cambie el texto
             }
         });
+
+        // Obtén una referencia al RecyclerView
+        RecyclerView recyclerView = view.findViewById(R.id.recyclerview_adddetalleepps);
+
+// Crea un LayoutManager (LinearLayoutManager, GridLayoutManager, etc.)
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(requireContext());
+        recyclerView.setLayoutManager(layoutManager);
+
+// Crea una lista de elementos para el RecyclerView
+        List<Object> itemList = new ArrayList<>(); // Reemplaza 'Object' con el tipo de dato de tu elemento
+
+// Agrega un elemento inicial a la lista
+        itemList.add(new Object()); // Reemplaza 'Object' con el objeto correspondiente
+
+// Crea un adaptador para el RecyclerView y establece el adaptador en el RecyclerView
+        DetalleAddEppItem adapterRecycler = new DetalleAddEppItem(itemList);
+        recyclerView.setAdapter(adapterRecycler);
+
 
         return view;
     }
