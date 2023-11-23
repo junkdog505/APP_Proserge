@@ -3,6 +3,8 @@ package com.ucsm.proserge.Adapters;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,17 +51,22 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     // ViewHolder para el último elemento con botón adicional
     public class LastItemViewHolder extends RecyclerView.ViewHolder {
-        // Aquí declara los componentes visuales para el último elemento especial
-        // con el botón adicional
-        // Ejemplo:
-        // Button button;
+        Button button;
 
         public LastItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializa el botón adicional u otros componentes visuales necesarios
-            // para el último elemento especial
-            // Ejemplo:
-            // button = itemView.findViewById(R.id.button);
+            button = itemView.findViewById(R.id.btnAgregarEppDetalleOrden);
+
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Agregar un nuevo elemento a la lista itemList
+                    itemList.add(new Object()); // Reemplaza 'Object' con tu tipo de dato
+
+                    // Notificar al adaptador que se agregó un elemento nuevo
+                    notifyItemInserted(itemList.size() - 1);
+                }
+            });
         }
 
         // Aquí configura el botón adicional o realiza acciones necesarias
