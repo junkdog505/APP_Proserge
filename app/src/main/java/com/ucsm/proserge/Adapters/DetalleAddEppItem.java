@@ -31,6 +31,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
         // Ejemplo:
         // TextView textView;
         // ImageView imageView;
+        Button btnRemoveEpp;
 
         public NormalItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -38,6 +39,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
             // Ejemplo:
             // textView = itemView.findViewById(R.id.textView);
             // imageView = itemView.findViewById(R.id.imageView);
+            btnRemoveEpp = itemView.findViewById(R.id.btnEliminarEppDetalleOrden);
         }
 
         // Aquí configura los componentes visuales para los elementos normales
@@ -46,6 +48,14 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
             // Ejemplo:
             // textView.setText(item.getSomeText());
             // imageView.setImageResource(item.getImageResource());
+            btnRemoveEpp.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int position = getAdapterPosition();
+                    itemList.remove(position);
+                    notifyItemRemoved(position);
+                }
+            });
         }
     }
 
