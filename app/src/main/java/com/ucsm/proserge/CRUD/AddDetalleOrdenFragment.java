@@ -1,5 +1,6 @@
 package com.ucsm.proserge.CRUD;
 
+import android.app.DatePickerDialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -22,8 +23,11 @@ import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.Clases.CentroCosto;
 import com.ucsm.proserge.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.Locale;
 
 public class AddDetalleOrdenFragment extends Fragment {
     private List<CentroCosto> centroCostosList;
@@ -33,8 +37,28 @@ public class AddDetalleOrdenFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState){
         View view = inflater.inflate(R.layout.addordentrabajo_fragment, container, false);
 
+        // ================================== Input Fecha ==================================
+        EditText editTextFecha = view.findViewById(R.id.editText_AddDetalleFecha);
+        editTextFecha.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(), (view1, year1, monthOfYear, dayOfMonth) -> {
+                calendar.set(Calendar.YEAR, year1);
+                calendar.set(Calendar.MONTH, monthOfYear);
+                calendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
+                editTextFecha.setText(dateFormat.format(calendar.getTime()));
+            }, year, month, day);
+            datePickerDialog.show();
+        });
+
+        // ================================== Input Centro de Costo ==================================
         Spinner spinner = view.findViewById(R.id.spinner_dropdown);
-        TextView textViewAddDetalleCentroCosto = view.findViewById(R.id.textViewAddDetalleCentroCosto);
+        TextView textViewAddDetalleCentroCosto = view.findViewById(R.id.editText_AddDetalleCentroCosto);
 
         centroCostosList = opcCentrosCosto();
 
