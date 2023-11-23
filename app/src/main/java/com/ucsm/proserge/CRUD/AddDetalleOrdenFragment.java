@@ -83,7 +83,7 @@ public class AddDetalleOrdenFragment extends Fragment {
             }
         });
 
-        /* preview Trabajador info */
+        // ================================== Input Trabajador ==================================
         EditText editTextDni = view.findViewById(R.id.editText_adddetalledni);
         TextView textViewNombres = view.findViewById(R.id.textViewAddDetalleNombresTrabajador);
         TextView textViewApellidos = view.findViewById(R.id.textViewAddDetalleApellidosTrabajador);
@@ -110,6 +110,7 @@ public class AddDetalleOrdenFragment extends Fragment {
                 // Método después de que cambie el texto
             }
         });
+
         return view;
     }
 
