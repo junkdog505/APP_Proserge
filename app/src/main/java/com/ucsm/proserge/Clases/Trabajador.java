@@ -10,6 +10,12 @@ public class Trabajador {
         this.cargo = c;
         this.tipocontrato = t;
     }
+    public Trabajador(String d, String n, String a, String c){
+        this.dni = d;
+        this.nombres = n;
+        this.apellidos = a;
+        this.cargo = c;
+    }
 
     public String getDni() {
         return dni;
