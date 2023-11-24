@@ -20,6 +20,14 @@
             android:orientation="horizontal"
             android:layout_margin="5dp">
 
+            <TextView
+                android:id="@+id/editText_AddDetalleEppId"
+                android:layout_width="6dp"
+                android:layout_height="wrap_content"
+                android:textColor="@color/cardview_light_background"
+                android:text="00"
+                android:textSize="5dp"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -43,7 +51,7 @@
                 android:id="@+id/btnEliminarEppDetalleOrden"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="6"
+                android:layout_weight="5"
                 android:backgroundTint="@color/Red_300"
                 android:drawableLeft="@drawable/ic_detallequitarepp"/>
 

@@ -5,9 +5,11 @@ import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -17,6 +19,8 @@ import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.Clases.Epp;
 import com.ucsm.proserge.R;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +29,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final int VIEW_TYPE_NORMAL_ITEM = 1;
     private static final int VIEW_TYPE_LAST_ITEM = 2;
 
-    private List<Epp> itemList; // Reemplaza 'Object' con el tipo de dato de tus elementos
+    private List<Epp> itemList;
 
     // Constructor para recibir la lista de elementos
     public DetalleAddEppItem(List<Epp> itemList) {
@@ -34,12 +38,9 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     // Método para cargar opciones en el Spinner
     private void cargarOpcionesSpinner(Spinner spinner) {
-        // Aquí realiza la lógica para obtener las opciones de la base de datos
-        // y cargarlas en el Spinner
-        AdminSQLite admin = new AdminSQLite(spinner.getContext()); // Reemplaza "getContext()" si no es un método disponible aquí
+        AdminSQLite admin = new AdminSQLite(spinner.getContext());
         SQLiteDatabase db = admin.getReadableDatabase();
 
-        // Realiza la consulta a la base de datos para obtener las opciones del Spinner
         List<Epp> optionsEpps = new ArrayList<>();
 
         Cursor cursor = db.rawQuery("SELECT EPPS.Id_epp, EPPS.Nombre FROM EPPS", null);
@@ -63,29 +64,17 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     // ViewHolder para elementos normales
     public class NormalItemViewHolder extends RecyclerView.ViewHolder {
-        // Aquí declara los componentes visuales para los elementos normales
-        // Ejemplo:
-        // TextView textView;
-        // ImageView imageView;
         Button btnRemoveEpp;
         Spinner spinnerEpp;
+        TextView textViewAddDetalleEppId;
 
         public NormalItemViewHolder(@NonNull View itemView) {
             super(itemView);
-            // Inicializa los componentes visuales para los elementos normales
-            // Ejemplo:
-            // textView = itemView.findViewById(R.id.textView);
-            // imageView = itemView.findViewById(R.id.imageView);
             btnRemoveEpp = itemView.findViewById(R.id.btnEliminarEppDetalleOrden);
             spinnerEpp = itemView.findViewById(R.id.spinner_epps);
+            textViewAddDetalleEppId = itemView.findViewById(R.id.editText_AddDetalleEppId);
         }
-
-        // Aquí configura los componentes visuales para los elementos normales
-        // utilizando los datos del objeto itemList en la posición 'position'
         public void bind(Epp item) {
-            // Ejemplo:
-            // textView.setText(item.getSomeText());
-            // imageView.setImageResource(item.getImageResource());
             btnRemoveEpp.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,6 +85,24 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
             });
 
             cargarOpcionesSpinner(spinnerEpp);
+
+            spinnerEpp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                @Override
+                public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                    // Obtener el ID seleccionado en el Spinner
+                    Epp selectedEpp = (Epp) parent.getItemAtPosition(position);
+                    int selectedId = selectedEpp.getId();
+
+                    // Establecer el ID seleccionado en el TextView correspondiente
+                    textViewAddDetalleEppId.setText(String.valueOf(selectedId));
+                }
+
+                @Override
+                public void onNothingSelected(AdapterView<?> parent) {
+                    // Acción cuando no se selecciona nada en el Spinner
+                }
+            });
+
         }
     }
 
