@@ -106,7 +106,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
         }
     }
 
-    // ViewHolder para el último elemento con botón adicional
+    // ViewHolder para el último elemento con botón
     public class LastItemViewHolder extends RecyclerView.ViewHolder {
         Button button;
 
@@ -117,22 +117,12 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
             button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Agregar un nuevo elemento a la lista itemList
-                    itemList.add(new Epp(1, "n")); // Reemplaza 'Object' con tu tipo de dato
-
-                    // Notificar al adaptador que se agregó un elemento nuevo
+                    itemList.add(new Epp(1, "n"));
                     notifyItemInserted(itemList.size() - 1);
                 }
             });
         }
-
-        // Aquí configura el botón adicional o realiza acciones necesarias
-        // para el último elemento especial
         public void bind() {
-            // Ejemplo:
-            // button.setOnClickListener(v -> {
-            //     // Acción al hacer clic en el botón
-            // });
         }
     }
 
