@@ -9,6 +9,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ucsm.proserge.Clases.Epp;
 import com.ucsm.proserge.R;
 
 import java.util.List;
@@ -18,10 +19,10 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
     private static final int VIEW_TYPE_NORMAL_ITEM = 1;
     private static final int VIEW_TYPE_LAST_ITEM = 2;
 
-    private List<Object> itemList; // Reemplaza 'Object' con el tipo de dato de tus elementos
+    private List<Epp> itemList; // Reemplaza 'Object' con el tipo de dato de tus elementos
 
     // Constructor para recibir la lista de elementos
-    public DetalleAddEppItem(List<Object> itemList) {
+    public DetalleAddEppItem(List<Epp> itemList) {
         this.itemList = itemList;
     }
 
@@ -44,7 +45,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         // Aquí configura los componentes visuales para los elementos normales
         // utilizando los datos del objeto itemList en la posición 'position'
-        public void bind(Object item) {
+        public void bind(Epp item) {
             // Ejemplo:
             // textView.setText(item.getSomeText());
             // imageView.setImageResource(item.getImageResource());
@@ -71,7 +72,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
                 @Override
                 public void onClick(View v) {
                     // Agregar un nuevo elemento a la lista itemList
-                    itemList.add(new Object()); // Reemplaza 'Object' con tu tipo de dato
+                    itemList.add(new Epp(1, "n")); // Reemplaza 'Object' con tu tipo de dato
 
                     // Notificar al adaptador que se agregó un elemento nuevo
                     notifyItemInserted(itemList.size() - 1);
