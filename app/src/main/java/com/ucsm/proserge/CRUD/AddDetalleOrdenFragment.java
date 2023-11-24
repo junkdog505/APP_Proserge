@@ -125,10 +125,10 @@ public class AddDetalleOrdenFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         // Crea una lista de elementos para el RecyclerView
-        List<Epp> itemList = new ArrayList<>(); // Reemplaza 'Object' con el tipo de dato de tu elemento
+        List<Epp> itemList = new ArrayList<>();
 
         // Agrega un elemento inicial a la lista
-        itemList.add(new Epp(1, "n")); // Reemplaza 'Object' con el objeto correspondiente
+        itemList.add(new Epp(1, "n"));
 
         // Crea un adaptador para el RecyclerView y establece el adaptador en el RecyclerView
         DetalleAddEppItem adapterRecycler = new DetalleAddEppItem(itemList);

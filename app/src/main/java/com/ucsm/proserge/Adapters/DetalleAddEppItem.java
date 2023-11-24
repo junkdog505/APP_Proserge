@@ -1,17 +1,23 @@
 package com.ucsm.proserge.Adapters;
 
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ucsm.proserge.AdminSQLite;
 import com.ucsm.proserge.Clases.Epp;
 import com.ucsm.proserge.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -26,6 +32,35 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
         this.itemList = itemList;
     }
 
+    // Método para cargar opciones en el Spinner
+    private void cargarOpcionesSpinner(Spinner spinner) {
+        // Aquí realiza la lógica para obtener las opciones de la base de datos
+        // y cargarlas en el Spinner
+        AdminSQLite admin = new AdminSQLite(spinner.getContext()); // Reemplaza "getContext()" si no es un método disponible aquí
+        SQLiteDatabase db = admin.getReadableDatabase();
+
+        // Realiza la consulta a la base de datos para obtener las opciones del Spinner
+        List<Epp> optionsEpps = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT EPPS.Id_epp, EPPS.Nombre FROM EPPS", null);
+        if (cursor.moveToFirst()) {
+            do {
+                String id = cursor.getString(0);
+                String nombre = cursor.getString(1);
+                int idint = Integer.parseInt(id);
+                Epp epp= new Epp(idint, nombre);
+                optionsEpps.add(epp);
+            } while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+
+        // Crea un adaptador para el Spinner y asigna las opciones
+        ArrayAdapter<Epp> adapter = new ArrayAdapter<>(spinner.getContext(), android.R.layout.simple_spinner_item, optionsEpps);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
+    }
+
     // ViewHolder para elementos normales
     public class NormalItemViewHolder extends RecyclerView.ViewHolder {
         // Aquí declara los componentes visuales para los elementos normales
@@ -33,6 +68,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
         // TextView textView;
         // ImageView imageView;
         Button btnRemoveEpp;
+        Spinner spinnerEpp;
 
         public NormalItemViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -41,6 +77,7 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
             // textView = itemView.findViewById(R.id.textView);
             // imageView = itemView.findViewById(R.id.imageView);
             btnRemoveEpp = itemView.findViewById(R.id.btnEliminarEppDetalleOrden);
+            spinnerEpp = itemView.findViewById(R.id.spinner_epps);
         }
 
         // Aquí configura los componentes visuales para los elementos normales
@@ -57,6 +94,8 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
                     notifyItemRemoved(position);
                 }
             });
+
+            cargarOpcionesSpinner(spinnerEpp);
         }
     }
 

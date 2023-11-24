@@ -1,5 +1,7 @@
 package com.ucsm.proserge.Clases;
 
+import androidx.annotation.NonNull;
+
 public class Epp {
     private int id;
     private String nombre;
@@ -39,5 +41,9 @@ public class Epp {
     }
     public String getClasificacion(){
         return clasificacion;
+    }
+
+    public String toString() {
+        return nombre;
     }
 }
