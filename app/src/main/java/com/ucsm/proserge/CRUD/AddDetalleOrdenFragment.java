@@ -1,6 +1,7 @@
 package com.ucsm.proserge.CRUD;
 
 import android.app.DatePickerDialog;
+import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -33,8 +34,10 @@ import com.ucsm.proserge.R;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 
 public class AddDetalleOrdenFragment extends Fragment {
     private List<CentroCosto> centroCostosList;
@@ -142,17 +145,69 @@ public class AddDetalleOrdenFragment extends Fragment {
         btnRegistrarOrden.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Obtener la instancia del adaptador DetalleAddEppItem del RecyclerView
-                DetalleAddEppItem adapterRecycler = (DetalleAddEppItem) recyclerView.getAdapter();
+                AdminSQLite admin = new AdminSQLite(requireContext());
+                SQLiteDatabase db = admin.getWritableDatabase();
 
-                // Verificar si el adaptador no es nulo y mostrar los IDs en un Toast
-                if (adapterRecycler != null) {
-                    List<String> eppIds = adapterRecycler.selectedEppsId();
-                    // Convertir la lista de IDs a una cadena para mostrar en el Toast
-                    String idsAsString = TextUtils.join(", ", eppIds);
-                    // Mostrar el Toast con los IDs
-                    Toast.makeText(requireContext(), "IDs seleccionados: " + idsAsString, Toast.LENGTH_SHORT).show();
+                // Instancias
+                DetalleAddEppItem adapterRecycler = (DetalleAddEppItem) recyclerView.getAdapter();
+                EditText editTextDetalleId = view.findViewById(R.id.editText_adddetalleid);
+                EditText editTextNombre = view.findViewById(R.id.editText_adddetallenombre);
+                TextView textViewCentroCosto = view.findViewById(R.id.editText_AddDetalleCentroCosto);
+                EditText editTextTipoEntrega = view.findViewById(R.id.editText_adddetallete);
+
+                // Obtención de valores para inserción en BD
+                String detalleId = editTextDetalleId.getText().toString();
+                String fecha = editTextFecha.getText().toString();
+                String nombre = editTextNombre.getText().toString();
+                String dni = editTextDni.getText().toString();
+                String centroCosto = textViewCentroCosto.getText().toString();
+                String tipoentrega = editTextTipoEntrega.getText().toString();
+                List<String> eppIds = adapterRecycler.selectedEppsId();
+
+                if(!detalleId.isEmpty() && !fecha.isEmpty() && !nombre.isEmpty() && !dni.isEmpty() && !centroCosto.isEmpty() && !tipoentrega.isEmpty()){
+                    if (eppIds.isEmpty()) {
+                        Toast.makeText(requireContext(), "Fallido: No se seleccionaron EPPS", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Verificar elementos repetidos en la lista de IDs
+                        Set<String> uniqueIds = new HashSet<>();
+                        boolean idRepeated = false;
+                        for (String id : eppIds) {
+                            if (!uniqueIds.add(id)) {
+                                idRepeated = true;
+                                break;
+                            }
+                        }
+                        if (idRepeated) {
+                            Toast.makeText(requireContext(), "Fallido: Se repiten EPPS", Toast.LENGTH_SHORT).show();
+                        } else {
+                            //Inserción de registros
+                            for (String id : eppIds) {
+                                ContentValues valores = new ContentValues();
+                                valores.put("Id_OT", detalleId);
+                                valores.put("Fecha", fecha);
+                                valores.put("Nombre", nombre);
+                                valores.put("Id_Trabajador", dni);
+                                valores.put("Id_EPPS", id);
+                                valores.put("Id_CentroCosto", centroCosto);
+                                valores.put("TipoEntrega", tipoentrega);
+
+
+                                // Intentar insertar el registro
+                                long resultadoInsercion = db.insert("OrdenTrabajo", null, valores);
+
+                                // Verificar si la inserción se realizó o no
+                                if (resultadoInsercion == -1) {
+                                    // No se pudo insertar debido a clave primaria duplicada
+                                    Toast.makeText(getContext(), "Registro ya existente", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                            db.close();
+                        }
+                    }
+                }else{
+                    Toast.makeText(requireContext(), "Fallido: Complete todos los campos", Toast.LENGTH_SHORT).show();
                 }
+
             }
         });
 
