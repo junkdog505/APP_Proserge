@@ -137,6 +137,7 @@ public class AddDetalleOrdenFragment extends Fragment {
         DetalleAddEppItem adapterRecycler = new DetalleAddEppItem(itemList);
         recyclerView.setAdapter(adapterRecycler);
 
+<<<<<<< HEAD
         // ================================== Registrar Orden Button ==================================
         Button btnRegistrarOrden = view.findViewById(R.id.btnRegistrarOrden);
         btnRegistrarOrden.setOnClickListener(new View.OnClickListener() {
@@ -155,6 +156,60 @@ public class AddDetalleOrdenFragment extends Fragment {
                 }
             }
         });
+=======
+        // ================================== Botón registrar ==================================
+        Button btnRegistrarOrden = view.findViewById(R.id.btnRegistrarOrden);
+
+        btnRegistrarOrden.setOnClickListener(v -> {
+            // Obtener referencias de los elementos
+            EditText editTextDetalleId = view.findViewById(R.id.editText_adddetalleid);
+            //EditText editTextFecha = view.findViewById(R.id.editText_AddDetalleFecha);
+            EditText editTextNombre = view.findViewById(R.id.editText_adddetallenombre);
+            //EditText editTextDni = view.findViewById(R.id.editText_adddetalledni);
+            TextView textViewCentroCosto = view.findViewById(R.id.editText_AddDetalleCentroCosto);
+            EditText editTextTipoEntrega = view.findViewById(R.id.editText_adddetallete);
+
+            // Obtener los valores de los elementos
+            String detalleId = editTextDetalleId.getText().toString();
+            String fecha = editTextFecha.getText().toString();
+            String nombre = editTextNombre.getText().toString();
+            String dni = editTextDni.getText().toString();
+            String centroCosto = textViewCentroCosto.getText().toString();
+            String tipoentrega = editTextTipoEntrega.getText().toString();
+
+            // Mostrar los Toast con la información
+            String toastMessage = detalleId + " " +
+                    fecha + " " +
+                    nombre + " " +
+                    dni + " " +
+                    centroCosto + " " +
+                    tipoentrega;
+
+            Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_LONG).show();
+
+            // Obtener los valores de los elementos del RecyclerView
+            //RecyclerView recyclerView = view.findViewById(R.id.recyclerview_adddetalleepps);
+            //DetalleAddEppItem adapterRecycler = (DetalleAddEppItem) recyclerView.getAdapter();
+
+            /*if (adapterRecycler != null) {
+                List<Epp> eppList = adapterRecycler.getItemList();
+
+                StringBuilder recyclerViewValues = new StringBuilder("RV:");
+                for (Epp eppItem : eppList) {
+                    recyclerViewValues.append(":").append(eppItem.getId()).append("\n");
+                    // Agregar más campos si es necesario según la estructura de tu Epp
+                }
+
+                Toast.makeText(requireContext(), recyclerViewValues.toString(), Toast.LENGTH_LONG).show();
+            }*/
+            List<String> selectedEppsList = adapterRecycler.selectedEppsId();
+            for (String id : selectedEppsList){
+                Toast.makeText(requireContext(), id, Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+>>>>>>> bc43d1337aed2b3116ead7492f093121cb31ca34
 
         return view;
     }
@@ -197,8 +252,8 @@ public class AddDetalleOrdenFragment extends Fragment {
                 textViewApellidos.setText("Trabajador no encontrado");
                 textViewCargo.setText("");
             }
-            cursor.close(); //Cerrar cursor después de usarlo
-            db.close(); //Cerrar la base de datos después de usarla
+            cursor.close();
+            db.close();
         }else{
             textViewNombres.setText("");
             textViewApellidos.setText("DNI Ingresado no válido");
