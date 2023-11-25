@@ -95,16 +95,11 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
 
                     // Establecer el ID seleccionado en el TextView correspondiente
                     textViewAddDetalleEppId.setText(String.valueOf(selectedId));
-<<<<<<< HEAD
 
                     int adapterPosition = getAdapterPosition();
                     if (adapterPosition != RecyclerView.NO_POSITION) {
                         itemList.get(adapterPosition).setId(selectedId);
                     }
-=======
-                    selectedEpp.setId(Integer.valueOf(selectedId));
-
->>>>>>> bc43d1337aed2b3116ead7492f093121cb31ca34
                 }
 
                 @Override
@@ -172,7 +167,6 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
     public int getItemCount() {
         return itemList.size() + 1;
     }
-<<<<<<< HEAD
 
     public List<String> selectedEppsId(){
         List<String> selectedEppsId = new ArrayList<>();
@@ -183,20 +177,4 @@ public class DetalleAddEppItem extends RecyclerView.Adapter<RecyclerView.ViewHol
 
         return selectedEppsId;
     }
-=======
-    public List<Epp> getItemList() {
-        return itemList;
-    }
-
-    public List<String> selectedEppsId() {
-        List<String> selectedEppsList = new ArrayList<>();
-
-        for (Epp epp : itemList) {
-            selectedEppsList.add(String.valueOf(epp.getId())); // Reemplaza getEppId() con el método que obtiene el valor del EditText
-        }
-
-        return selectedEppsList;
-    }
-
->>>>>>> bc43d1337aed2b3116ead7492f093121cb31ca34
 }
