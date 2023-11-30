@@ -83,7 +83,7 @@ public class OrdenTrabajoAdapter extends RecyclerView.Adapter<OrdenTrabajoAdapte
                 bundle.putString("trabajador_cargo", ordenSeleccionada.getCargo_trabajador());
                 bundle.putString("centrocosto_id", ordenSeleccionada.getId_centrocosto());
                 bundle.putString("centrocosto_nombre", ordenSeleccionada.getNombre_centrocosto());
-                bundle.putString("tipoentrega", ordenSeleccionada.getId());
+                bundle.putString("tipoentrega", ordenSeleccionada.getTipoentrega());
                 detalleFragment.setArguments(bundle);
 
                 // Abrir el nuevo fragmento con los detalles del registro
